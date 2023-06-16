@@ -1,4 +1,4 @@
-const mongoose = require("mongoose");
+const mongoose = require("mongoose")
 
 const orderSchema = new mongoose.Schema({
   user: {
@@ -41,12 +41,11 @@ const orderSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
-  deliverdAt:Date
-  ,
+  deliverdAt: Date,
   paidAt: {
     type: Date,
   },
-});
+})
 
 orderSchema.pre(/^find/, async function (next) {
   this.populate({
@@ -54,11 +53,11 @@ orderSchema.pre(/^find/, async function (next) {
     select: "name photo phone email",
   }).populate({
     path: "cartItems.product",
-    select:"name imageCover"
-  });
-  next();
-});
+    select: "name imageCover",
+  })
+  next()
+})
 
-const Order = mongoose.model("Order", orderSchema);
+const Order = mongoose.model("Order", orderSchema)
 
-module.exports = Order;
+module.exports = Order

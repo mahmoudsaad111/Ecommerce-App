@@ -1,11 +1,11 @@
-const mongoose = require("mongoose");
-const product=require('./productModel'); 
+const mongoose = require("mongoose")
+const product = require("./productModel")
 
 const cartSchema = new mongoose.Schema({
   user: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
-    required:[true,"cart must belong to a user"]
+    required: [true, "cart must belong to a user"],
   },
   items: [
     {
@@ -33,19 +33,16 @@ const cartSchema = new mongoose.Schema({
     type: Date,
     default: Date.now,
   },
-});
+})
 
+cartSchema.pre(/^find/, function (next) {
+  this.populate({
+    path: "items.product",
+    select: "name",
+  })
+  next()
+})
 
-cartSchema.pre(/^find/,function(next){
- this.populate({
-  path:"items.product",
-  select:"name"
- })
- next();  
-}); 
+const Cart = mongoose.model("Cart", cartSchema)
 
-
-
-const Cart = mongoose.model("Cart", cartSchema);
-
-module.exports = Cart;
+module.exports = Cart

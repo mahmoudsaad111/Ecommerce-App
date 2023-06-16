@@ -1,5 +1,5 @@
-const mongoose = require("mongoose");
-const Review = require("./reviewModel");
+const mongoose = require("mongoose")
+const Review = require("./reviewModel")
 
 const productSchema = new mongoose.Schema({
   name: {
@@ -11,10 +11,10 @@ const productSchema = new mongoose.Schema({
     required: [true, "You must provide image cover for the product"],
   },
   images: [String],
- description: {
+  description: {
     type: String,
     required: [true, "You must provide the product description "],
-  }, 
+  },
   price: {
     type: Number,
     required: [true, "You must provide the Product price"],
@@ -26,9 +26,9 @@ const productSchema = new mongoose.Schema({
     type: Number,
     required: [true, "You must provide the Product quantity"],
   },
-  sold:{
-    type:Number,
-    default:0
+  sold: {
+    type: Number,
+    default: 0,
   },
   review: [
     {
@@ -44,8 +44,8 @@ const productSchema = new mongoose.Schema({
     type: String,
     required: [true, "You must provide the Product category"],
   },
-});
+})
 
-const Product = mongoose.model("Product", productSchema);
+const Product = mongoose.model("Product", productSchema)
 
-module.exports = Product;
+module.exports = Product

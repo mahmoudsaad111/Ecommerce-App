@@ -1,11 +1,13 @@
-const dotenv = require("dotenv");
-dotenv.config({ path: "./config.env" });
-const app=require('./app'); 
-const dbConnection=require('./config/mongodb'); 
+const dotenv = require("dotenv")
+dotenv.config({ path: "./config.env" })
 
-dbConnection; 
+const app = require("./app")
+const dbConnection = require("./config/mongodb")
+const logger = require("./config/logger")
+const PORT = process.env.PORT
 
-const PORT=process.env.PORT; 
-app.listen(PORT,()=>{
-    console.log(`app is listening on port ...!`,PORT); 
-}); 
+dbConnection
+
+app.listen(PORT, () => {
+  logger.info(`app is listening on port ${PORT}`)
+})
