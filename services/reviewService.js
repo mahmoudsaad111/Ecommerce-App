@@ -1,9 +1,9 @@
 const Review = require("../models/reviewModel")
 const boom = require("@hapi/boom")
 
-exports.createReview = async (body) => {
+exports.createReview = async (body,userId) => {
+  body.user=userId; 
   const review = await Review.create(body)
-
   return review
 }
 

@@ -4,27 +4,23 @@ const Review = require("./reviewModel")
 const productSchema = new mongoose.Schema({
   name: {
     type: String,
-    required: [true, "You must provide the Product name"],
   },
   imageCover: {
     type: String,
-    required: [true, "You must provide image cover for the product"],
+    required:[true,"Pleaase provide product image-cover"]
   },
   images: [String],
   description: {
     type: String,
-    required: [true, "You must provide the product description "],
   },
   price: {
     type: Number,
-    required: [true, "You must provide the Product price"],
   },
   averageRatings: {
     type: Number,
   },
   quantity: {
     type: Number,
-    required: [true, "You must provide the Product quantity"],
   },
   sold: {
     type: Number,
@@ -42,7 +38,6 @@ const productSchema = new mongoose.Schema({
   },
   category: {
     type: String,
-    required: [true, "You must provide the Product category"],
   },
 })
 

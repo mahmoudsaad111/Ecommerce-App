@@ -7,8 +7,7 @@ const {
 } = require("../services/reviewService")
 
 exports.createReview = asyncHandler(async (req, res, next) => {
-  req.body.user = req.user.id
-  const review = await createReview(req.body)
+  const review = await createReview(req.body,req.user.id)
 
   res.status(200).json({
     status: "success",

@@ -12,7 +12,7 @@ exports.getUser = async (userId) => {
   return user
 }
 
-exports.getAllusers = async (queryStr, next) => {
+exports.getAllusers = async (queryStr) => {
   const features = new ApiFeatures(User.find(), queryStr)
     .filter()
     .sort()
@@ -25,12 +25,7 @@ exports.getAllusers = async (queryStr, next) => {
   return users
 }
 
-exports.createUser = async (body, next) => {
-  const user = await User.create(body)
-  return user
-}
-
-exports.deleteUser = async (userId, next) => {
+exports.deleteUser = async (userId) => {
   const user = await User.findByIdAndDelete(userId)
 
   if (!user) {
@@ -40,12 +35,12 @@ exports.deleteUser = async (userId, next) => {
   return user
 }
 
-exports.updateUser = async (body, userId, next) => {
-  const user = await User.findByIdAndUpdate(userId, body, {
+exports.changeUserRole = async (role, userId) => {
+  const user = await User.findByIdAndUpdate(userId,role, {
     runValidators: true,
     new: true,
   })
-
+  
   if (!user) {
     return boom.notFound("No User with this ID")
   }

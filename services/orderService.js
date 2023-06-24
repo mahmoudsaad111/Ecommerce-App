@@ -159,16 +159,3 @@ exports.checkoutWebhook = async (headers, rawBody) => {
     logger.info(`An order has been requested using stripe Payment `)
   }
 }
-
-exports.updateOrderToDelivered = async (orderId) => {
-  const order = await Order.findById(orderId)
-  if (!order) {
-    return boom.notFound("No order with this ID")
-  }
-
-  order.deliverd = true
-  order.deliverdAt = Date.now()
-
-  const newOrder = await order.save()
-  return newOrder
-}

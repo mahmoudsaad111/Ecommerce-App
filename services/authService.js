@@ -5,6 +5,7 @@ const crypto = require("crypto")
 const { hash } = require("bcrypt")
 const boom = require("@hapi/boom")
 
+
 exports.signToken = (id) => {
   // generate token by user ID
   return jwt.sign({ id }, process.env.JWT_SECRET_KEY, {
@@ -21,9 +22,6 @@ exports.signup = async ({ name, email, password, passwordConfirm }) => {
 }
 
 exports.login = async ({ email, password }) => {
-  if (!email || !password) {
-    return boom.badRequest("Please enter email and password")
-  }
 
   const user = await User.findOne({ email }).select("+password")
 
@@ -35,7 +33,6 @@ exports.login = async ({ email, password }) => {
 }
 
 exports.forgetPassword = async (email) => {
-  // validate input email
   const user = await User.findOne({ email })
   if (!user) {
     return boom.badRequest("No user with this email")

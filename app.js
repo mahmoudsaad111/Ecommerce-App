@@ -1,6 +1,7 @@
 const express = require("express")
 const path = require("path")
 const dotenv = require("dotenv")
+dotenv.config({ path: "/.env" })
 
 //Routes
 const adminRouter = require("./routes/adminRoute")
@@ -15,10 +16,10 @@ const cookieParser = require("cookie-parser")
 const bodyParser = require("body-parser")
 const globalError = require("./middlewares/errorMiddleware")
 const cors = require("cors")
+const helmet=require('helmet');
 const boom = require("@hapi/boom")
 const { cwd } = require("process")
 
-dotenv.config({ path: "/.env" })
 
 const app = express()
 
@@ -29,6 +30,7 @@ app.use(express.static(path.join(__dirname, "public")))
 app.use(cookieParser())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(cors())
+app.use(helmet());
 app.use(morgan("dev"))
 
 // this accept json data in req.body and raw data in req.rawBody

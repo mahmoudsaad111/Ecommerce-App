@@ -8,7 +8,7 @@ const {
 } = require("../services/cartService")
 
 exports.addProductToCart = asyncHandler(async (req, res, next) => {
-  const cart = await addProductToCart(req.body, req.user)
+  const cart = await addProductToCart(req.body.productId, req.user)
 
   if (cart instanceof Error) return next(cart)
 
@@ -53,7 +53,7 @@ exports.deleteItemFromCart = asyncHandler(async (req, res, next) => {
 
 exports.updateItemQuantity = asyncHandler(async (req, res, next) => {
   const cart = await updateItemQuantity(
-    req.body,
+    req.body.quantity,
     req.params.productId,
     req.user
   )

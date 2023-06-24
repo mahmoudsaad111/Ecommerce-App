@@ -13,7 +13,6 @@ exports.getMe = asyncHandler(async (req, res, next) => {
 })
 
 exports.updateMe = asyncHandler(async (req, res, next) => {
-  console.log(req.body)
   if (req.file) {
     req.body.photo = req.file.filename
   }

@@ -23,8 +23,7 @@ const ProductInCart = (cart, productId) => {
   return productIndex
 }
 
-exports.addProductToCart = async (body, user) => {
-  const { productId } = body
+exports.addProductToCart = async (productId, user) => {
   const product = await Product.findById(productId)
 
   if (!product) return boom.notFound("No product with this ID")
@@ -86,9 +85,7 @@ exports.deleteItemFromCart = async (productId, user) => {
   return cart
 }
 
-exports.updateItemQuantity = async (body, productId, user) => {
-  const { quantity } = body
-
+exports.updateItemQuantity = async (quantity, productId, user) => {
   const cart = await Cart.findOne({ user: user.id })
 
   if (!cart) return boom.notFound("Cart is already empty")

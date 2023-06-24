@@ -18,7 +18,6 @@ const orderSchema = new mongoose.Schema({
   ],
   address: {
     type: String,
-    required: [true, "You must provide order address"],
   },
   taxPrice: {
     type: Number,
