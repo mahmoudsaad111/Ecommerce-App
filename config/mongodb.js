@@ -4,7 +4,7 @@ dotenv.config({ path: "./config.env" });
 const logger=require('./logger'); 
 
 
-const connectionString=process.env.MONGODB_ATLAS.replace('<password>',process.env.MONGODB_PASSWORD);
+const connectionString=process.env.MONGODB_ATLAS.replace('<db_password>',process.env.MONGODB_PASSWORD);
 
 module.exports=mongoose.connect(connectionString,{
     useNewUrlParser: true,
