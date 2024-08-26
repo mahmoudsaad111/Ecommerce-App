@@ -18,6 +18,7 @@ const productSchema = new mongoose.Schema({
   },
   averageRatings: {
     type: Number,
+    default:0,
   },
   quantity: {
     type: Number,

@@ -6,22 +6,28 @@ const {
   deleteProduct,
   createProduct,
 } = require("../services/productService")
+const {getSimilarProducts}=require('../services/recommendationService')
 
 exports.getProduct = asyncHandler(async (req, res, next) => {
   const product = await getProduct(req.params.productId)
 
   if (product instanceof Error) return next(product)
 
+  const similarProducts= await getSimilarProducts(product._id); 
+  
   res.status(200).json({
     status: "success",
     data: {
       product,
+      similarProducts
     },
   })
 })
 
 exports.getAllProducts = asyncHandler(async (req, res, next) => {
   const products = await getAllProducts(req.query)
+   
+  if (products instanceof Error) return next(products);
 
   res.status(200).json({
     status: "success",
